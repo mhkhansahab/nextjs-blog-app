@@ -1,8 +1,9 @@
 import { NextPage } from "next";
+import styles from './../../styles/footer.module.css';
 
 const Footer: NextPage = ()=>{
     return(
-        <div className=''>
+        <div className={styles.container}>
 
         </div>
     );

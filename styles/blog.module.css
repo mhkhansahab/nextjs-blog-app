@@ -1,0 +1,23 @@
+.container{
+    color: #fcf7f9;
+    width: 80%;
+    padding: 40px;
+    background-color: #d38c9b;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+.title{
+    font-size: 30px;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+.author{
+    font-size: 22px;
+    font-weight: 200;
+}
+.description{
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: 400;
+}
