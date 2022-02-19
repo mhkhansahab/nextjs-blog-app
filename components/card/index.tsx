@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import styles from './../../styles/card.module.css'
+import styles from '../../styles/card.module.css'
 import { Blog } from '../../interfaces'
 import Link from 'next/link'
 
@@ -9,7 +9,7 @@ const Card: NextPage<Blog> = ({title, description, author, id}) => {
             <div className={styles.title}>{title}</div>
             <div className={styles.description}>{description}</div>
             <div className={styles.author}>{`Author- ${author}`}</div>
-            <Link href={'/' + id}><div className={styles.button}>Read More</div></Link>
+            <Link href={'/' + id} passHref><div className={styles.button}>Read More</div></Link>
         </div>
     )
 }

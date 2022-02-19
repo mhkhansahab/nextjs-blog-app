@@ -1,5 +1,5 @@
 import { NextPage, GetStaticProps, GetStaticPaths,InferGetStaticPropsType } from "next";
-import styles from "./../styles/blog.module.css";
+import styles from "../styles/blog.module.css";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const blogs = await fetch('https://nestjs-blog-app.herokuapp.com/blogs');
