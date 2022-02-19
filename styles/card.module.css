@@ -1,0 +1,46 @@
+.container {
+    border-radius: 10px;
+    background-color: #e1a1ae;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 280px;
+    margin: 20px;
+    cursor: default;
+    color: #fcf7f9;
+
+}
+.container >div:not(:last-child){
+    padding: 5px 0;
+}
+.title{
+    font-size: 18px;
+    font-weight: 700;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.description{
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
+}
+.author{
+    font-size: 14px;
+    font-weight: 200;
+    align-self: flex-end;
+}
+
+.button{
+    border: 1px solid #fcf7f9;
+    border-radius: 25px;
+    font-size: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
