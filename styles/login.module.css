@@ -1,0 +1,40 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.input{
+    padding: 6px 10px;
+    outline: none;
+    border: none;
+    margin: 5px 0;
+    border-radius: 20px;
+}
+
+.button{
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    width: fit-content;
+    margin:  0 auto;
+    margin-top: 20px;
+    color: #d38c9b;
+    font-weight: 700;
+    font-size: 16px;
+}
+.text{
+    margin: 0 auto;
+    margin-top: 10px;
+    color: #fcf7f9;
+    font-size: 14px;
+}
+.text>span{
+    color: slategray;
+    cursor: pointer;
+}
+.text>span:hover{
+    text-decoration: underline;
+}
