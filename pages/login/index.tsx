@@ -5,7 +5,8 @@ import * as yup from "yup";
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import { logIn } from './../../redux/services/user.service';
-import { useAppSelector, useAppDispatch } from '../../redux/app/hooks';
+import { useAppDispatch } from '../../redux/app/hooks';
+import Route from '../../components/route';
 
 const loginSchema = yup.object({
     email: yup
@@ -25,7 +26,7 @@ const Login: NextPage = () => {
     const router = useRouter();
 
     return (
-        <>
+        <Route>
             <Formik
                 initialValues={{ email: "", password: "" }}
                 validationSchema={loginSchema}
@@ -34,10 +35,12 @@ const Login: NextPage = () => {
                     dispatch(logIn(values))
                         .then((data: any) => {
                             if (data?.success) {
+                                window?.localStorage?.setItem('user', JSON.stringify(data?.user));
+                                window?.localStorage?.setItem('token', JSON.stringify(data?.access_token));
                                 resetForm({ values: { email: '', password: '' } });
                                 router?.push('/');
-                            }else{
-                                setState({ showLoader: false })    
+                            } else {
+                                setState({ showLoader: false })
                             }
 
                         })
@@ -74,10 +77,7 @@ const Login: NextPage = () => {
                     </Form>
                 )}
             </Formik>
-
-
-
-        </>
+        </Route>
     )
 }
 

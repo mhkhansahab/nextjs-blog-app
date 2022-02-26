@@ -14,7 +14,9 @@
     outline: none;
     border: none;
     resize: none;
-}
+    background-color: #e1a1ae;
+    color: #fcf7f9;
+  }
 
 .textarea{
     height: 30vh;
@@ -64,3 +66,9 @@
     }
   }
   
+  @media screen and (max-width: 712px) {
+ 
+.input, .textarea {
+  width: 90%;
+}
+}

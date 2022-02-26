@@ -5,7 +5,8 @@ import * as yup from "yup";
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import { signUp } from './../../redux/services/user.service';
-import { useAppSelector, useAppDispatch } from '../../redux/app/hooks';
+import { useAppDispatch } from '../../redux/app/hooks';
+import Route from '../../components/route';
 
 const signupSchema = yup.object({
 
@@ -26,7 +27,6 @@ const signupSchema = yup.object({
         .required("Password is required"),
 });
 
-
 const Login: NextPage = () => {
 
     const [state, setState] = useState({ showLoader: false });
@@ -34,7 +34,7 @@ const Login: NextPage = () => {
     const router = useRouter();
 
     return (
-        <>
+        <Route>
             <Formik
                 initialValues={{ fullname: "", email: "", password: "" }}
                 validationSchema={signupSchema}
@@ -44,10 +44,12 @@ const Login: NextPage = () => {
 
                         .then((data: any) => {
                             if (data?.success) {
-                                resetForm({ values: { fullname: '', email: '', password: '' } })
+                                window?.localStorage?.setItem('user', JSON.stringify(data?.user));
+                                window?.localStorage?.setItem('token', JSON.stringify(data?.access_token));
+                                resetForm({ values: { fullname: '', email: '', password: '' } });
                                 router?.push('/');
-                            }else{
-                                setState({ showLoader: false })    
+                            } else {
+                                setState({ showLoader: false })
                             }
                         })
                         .catch(() => {
@@ -91,7 +93,7 @@ const Login: NextPage = () => {
 
                 )}
             </Formik>
-        </>
+        </Route>
     )
 }
 
