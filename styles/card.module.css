@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 280px;
+    min-width: 220px;
     margin: 20px;
     cursor: default;
     color: #fcf7f9;

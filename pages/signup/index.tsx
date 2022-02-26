@@ -4,10 +4,18 @@ import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import { useState } from 'react';
 import { useRouter } from 'next/router'
-import { logIn } from './../../redux/services/user.service';
+import { signUp } from './../../redux/services/user.service';
 import { useAppSelector, useAppDispatch } from '../../redux/app/hooks';
 
-const loginSchema = yup.object({
+const signupSchema = yup.object({
+
+    fullname: yup
+        .string()
+        .trim()
+        .matches(/^[a-zA-Z ]+$/, "Name can only contain alphabets")
+        .min(4, "Name should be of minimum 4 charachters")
+        .max(30, "Name shuld not be exceeded to 30 characters")
+        .required("Full Name is required"),
     email: yup
         .string()
         .email("Enter a valid email")
@@ -18,6 +26,7 @@ const loginSchema = yup.object({
         .required("Password is required"),
 });
 
+
 const Login: NextPage = () => {
 
     const [state, setState] = useState({ showLoader: false });
@@ -27,19 +36,19 @@ const Login: NextPage = () => {
     return (
         <>
             <Formik
-                initialValues={{ email: "", password: "" }}
-                validationSchema={loginSchema}
+                initialValues={{ fullname: "", email: "", password: "" }}
+                validationSchema={signupSchema}
                 onSubmit={(values, { resetForm }) => {
                     setState({ showLoader: true })
-                    dispatch(logIn(values))
+                    dispatch(signUp(values))
+
                         .then((data: any) => {
                             if (data?.success) {
-                                resetForm({ values: { email: '', password: '' } });
+                                resetForm({ values: { fullname: '', email: '', password: '' } })
                                 router?.push('/');
                             }else{
                                 setState({ showLoader: false })    
                             }
-
                         })
                         .catch(() => {
                             setState({ showLoader: false })
@@ -48,6 +57,13 @@ const Login: NextPage = () => {
             >
                 {({ errors, touched }) => (
                     <Form className={styles.container}>
+                        <Field name="fullname"
+                            className={styles.input}
+                        />
+                        {errors.fullname && touched.fullname ? (
+                            <div>{errors.fullname}</div>
+                        ) : null}
+
                         <Field
                             name="email"
                             type="email"
@@ -65,18 +81,16 @@ const Login: NextPage = () => {
                         ) : null}
 
                         <button type="submit" className={styles.button}>
-                            {!state.showLoader ? 'Login' : <div className={styles.inkLoader}></div>}
+                            {!state.showLoader ? 'Signup' : <div className={styles.inkLoader}></div>}
                         </button>
 
 
-                        <div className={styles.text}>No account? <span onClick={() => router?.push('/signup')}>Create one</span></div>
+                        <div className={styles.text}>Already have an account? <span onClick={() => router.push('/login')}>Login</span></div>
 
                     </Form>
+
                 )}
             </Formik>
-
-
-
         </>
     )
 }

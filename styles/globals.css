@@ -29,3 +29,8 @@ a {
   min-height: 90vh;
   position: relative;
 }
+@media screen and (max-width: 512px){
+  .layout-container{
+    width: 95%;
+  }
+}
