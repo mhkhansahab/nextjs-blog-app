@@ -30,8 +30,8 @@ const Layout: NextPage = ({ children }) => {
       {
         state?.userData?.user ?
           <>
-            <FloatingButton path='/blog.png' bottom={100} />
-            <FloatingButton path='/logout.png' bottom={40} />
+            <FloatingButton path='/blog.png' bottom={100} route='me'/>
+            <FloatingButton path='/logout.png' bottom={40} route='logout'/>
           </> : null
       }
 
