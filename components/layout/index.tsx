@@ -8,7 +8,7 @@ import FloatingButton from "../floatingbtn";
 
 const Layout: NextPage = ({ children }) => {
   const state = useAppSelector(state => state);
-  const dispatch = useAppDispatch();
+const dispatch = useAppDispatch();
 
   useEffect(() => {
     const userData = window?.localStorage?.getItem('user');
@@ -18,7 +18,7 @@ const Layout: NextPage = ({ children }) => {
       const token = JSON.parse(tokenData);
       dispatch(addUser({ user, token }))
     }
-  }, [])
+  }, [])  // eslint-disable-line
 
 
   return (

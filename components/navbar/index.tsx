@@ -26,7 +26,7 @@ const Navbar: NextPage = () => {
                         <Link href='/login' passHref><span className={styles.signin}>Sign In</span></Link>
                 }
                 <span className={styles.btnContainer}>
-                    <span className={styles.authText}>Let's </span>
+                    <span className={styles.authText}>{`Let's `}</span>
                     <span className={styles.startbtn} onClick={clickHandler}>Start Writing</span>
                 </span>
             </div>
