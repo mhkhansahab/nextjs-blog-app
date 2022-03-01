@@ -1,4 +1,5 @@
-import { NextPage, GetStaticProps, GetStaticPaths,InferGetStaticPropsType } from "next";
+import { NextPage, GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from "next";
+import Image from "next/image";
 import styles from "../styles/blog.module.css";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -16,7 +17,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 }
 
-export const getStaticProps: GetStaticProps = async (context:any) => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
     const id = context.params.id;
     const response = await fetch('https://nestjs-blog-app.herokuapp.com/blogs/' + id);
     const blog: any = await response.json();
@@ -26,9 +27,18 @@ export const getStaticProps: GetStaticProps = async (context:any) => {
 }
 
 
-const Blog: NextPage = ({blog}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Blog: NextPage = ({ blog }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <div className={styles.container}>
+            <div className={styles.imgContainer}>
+                <span>
+                    <Image src={'/edit.png'} height={32} width={32}></Image>
+                </span>
+                <span>
+                    <Image src={'/delete.png'} height={32} width={32}></Image>
+                </span>
+
+            </div>
             <div className={styles.title}>{blog?.title}</div>
             <div className={styles.author}>{blog?.author}</div>
             <div className={styles.description}>{blog?.description}</div>

@@ -33,6 +33,7 @@ const MyBlogs: NextPage = () => {
 
     return (
         <Route>
+            <div className={styles.heading}>My Blogs</div>
             <div className={styles.container}>
                 {
                     blogs ?

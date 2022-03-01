@@ -6,6 +6,7 @@
     border-radius: 20px;
     margin: 0 auto;
     margin-bottom: 100px;
+    position: relative;
 }
 .title{
     font-size: 30px;
@@ -20,4 +21,19 @@
     margin-top: 40px;
     font-size: 18px;
     font-weight: 400;
+}
+.imgContainer{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+.imgContainer>span{
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 512px) {
+    .title{
+        margin-top: 16px;
+    }
 }
