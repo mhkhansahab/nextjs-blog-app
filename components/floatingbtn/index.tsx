@@ -21,7 +21,7 @@ const FloatingButton: NextPage<{ path: string, bottom: number, route: string }> 
 
     return (
         <div className={styles.container} style={{ bottom }} onClick={() => { routeHandler(route) }}>
-            <Image src={path} height={32} width={32}></Image>
+            <Image src={path} height={32} width={32} alt={'Floating Image'}></Image>
         </div>
     );
 }

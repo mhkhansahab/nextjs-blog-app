@@ -29,7 +29,7 @@ const MyBlogs: NextPage = () => {
                 setBlogs(blogs?.data);
             }
         })()
-    }, [])
+    }, [])   // eslint-disable-line
 
     return (
         <Route>
