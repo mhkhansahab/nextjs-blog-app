@@ -40,26 +40,27 @@ const Login: NextPage = () => {
                 validationSchema={signupSchema}
                 onSubmit={(values, { resetForm }) => {
                     setState({ showLoader: true })
-                    dispatch(signUp(values))
-
-                        .then((data: any) => {
-                            if (data?.success) {
-                                window?.localStorage?.setItem('user', JSON.stringify(data?.user));
-                                window?.localStorage?.setItem('token', JSON.stringify(data?.access_token));
-                                resetForm({ values: { fullname: '', email: '', password: '' } });
-                                router?.push('/');
-                            } else {
-                                setState({ showLoader: false })
-                            }
-                        })
-                        .catch(() => {
+                    dispatch(signUp({ name: values?.fullname , email : values?.email, password: values?.password}))
+                    .then((data: any) => {
+                        if (data?.success) {
+                            window?.localStorage?.setItem('user', JSON.stringify(data?.user));
+                            window?.localStorage?.setItem('token', JSON.stringify(data?.access_token));
+                            resetForm({ values: { fullname: '', email: '', password: '' } });
+                            router?.push('/');
+                        } else {
                             setState({ showLoader: false })
-                        })
+                        }
+                    })
+                    .catch(() => {
+                        setState({ showLoader: false })
+                    })
                 }}
             >
                 {({ errors, touched }) => (
                     <Form className={styles.container}>
-                        <Field name="fullname"
+                        <Field 
+                            name="fullname"
+                            placeholder = "Full Name"
                             className={styles.input}
                         />
                         {errors.fullname && touched.fullname ? (
@@ -69,6 +70,7 @@ const Login: NextPage = () => {
                         <Field
                             name="email"
                             type="email"
+                            placeholder = "Email"
                             className={styles.input}
                         />
                         {errors.email && touched.email ? <div>{errors.email}</div> : null}
@@ -76,6 +78,7 @@ const Login: NextPage = () => {
                         <Field
                             name="password"
                             type="password"
+                            placeholder = "Password"
                             className={styles.input}
                         />
                         {errors.password && touched.password ? (

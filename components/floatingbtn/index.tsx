@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { addUser } from "../../redux/actions/user.action";
 import { useAppDispatch } from "../../redux/app/hooks";
 
-const FloatingButton: NextPage<{ path: string, bottom: number, route: string }> = ({ path, bottom, route }) => {
+const FloatingButton: NextPage<{ path: string, bottom: number, route: string , text:string}> = ({ path, bottom, route, text }) => {
     const router = useRouter();
     const dispatch = useAppDispatch();
 
@@ -22,6 +22,7 @@ const FloatingButton: NextPage<{ path: string, bottom: number, route: string }> 
     return (
         <div className={styles.container} style={{ bottom }} onClick={() => { routeHandler(route) }}>
             <Image src={path} height={32} width={32} alt={'Floating Image'}></Image>
+            <div className={styles.tooltip}>{text}</div>
         </div>
     );
 }

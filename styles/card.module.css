@@ -1,7 +1,7 @@
 .container {
     border-radius: 10px;
     background-color: #d38c9b;
-    padding: 10px 20px;
+    padding: 12px 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -10,38 +10,58 @@
     margin: 20px;
     cursor: default;
     color: #fcf7f9;
+    position: relative;
 
 }
-.container >div:not(:last-child){
+
+.title, .author, .img {
     padding: 5px 0;
 }
-.title{
-    font-size: 18px;
+
+.title {
+    font-size: 20px;
     font-weight: 700;
     width: 100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.description{
+
+.description {
     font-size: 14px;
     font-weight: 600;
     width: 100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    
-}
-.author{
-    font-size: 14px;
-    font-weight: 200;
-    align-self: flex-end;
+
 }
 
-.button{
+.author {
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.button {
     border: 1px solid #fcf7f9;
     border-radius: 25px;
     font-size: 12px;
     padding: 5px 10px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.img {
+    align-self: center;
+}
+
+.imgContainer {
+    position: absolute;
+    bottom: 10px;
+    left:20px;
+}
+
+.imgContainer>span {
+    margin-right: 10px;
     cursor: pointer;
 }

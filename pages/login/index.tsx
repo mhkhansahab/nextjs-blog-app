@@ -54,6 +54,7 @@ const Login: NextPage = () => {
                         <Field
                             name="email"
                             type="email"
+                            placeholder = "Email"
                             className={styles.input}
                         />
                         {errors.email && touched.email ? <div>{errors.email}</div> : null}
@@ -61,6 +62,7 @@ const Login: NextPage = () => {
                         <Field
                             name="password"
                             type="password"
+                            placeholder = "Password"
                             className={styles.input}
                         />
                         {errors.password && touched.password ? (

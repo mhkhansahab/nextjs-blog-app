@@ -18,26 +18,25 @@ const Write: NextPage = () => {
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         const value = e?.target?.value;
-        if (value.trim() !== '') {
-            setFormData({
-                ...formData,
-                title: value
-            })
-        }
+        setFormData({
+            ...formData,
+            title: value
+        })
+
     }
 
     function handleTextAreaChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
         const value = e?.target?.value;
-        if (value.trim() !== '') {
-            setFormData({
-                ...formData,
-                description: value
-            })
-        }
+        setFormData({
+            ...formData,
+            description: value
+        })
+
     }
 
     async function sendBlog() {
         if (formData?.title?.trim() !== '' && formData?.description?.trim() !== '') {
+            setState({ showLoader: true })
             const blog = {
                 title: formData?.title,
                 description: formData?.description,
@@ -54,14 +53,16 @@ const Write: NextPage = () => {
             };
 
             try {
-
                 const response: any = await fetch('https://nestjs-blog-app.herokuapp.com/blogs', apiData);
                 const jsonResponse: any = await response.json();
                 if (jsonResponse?.success) {
                     router.push('/')
+                } else {
+                    setState({ showLoader: false })
                 }
             } catch (e) {
                 console.log(e);
+                setState({ showLoader: false })
             }
         }
     }
@@ -70,13 +71,13 @@ const Write: NextPage = () => {
         <Route>
             <div className={styles.container}>
                 <input
-                    placeholder='Enter Title'
+                    placeholder='Title'
                     value={formData?.title}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e)}
                     className={styles.input}>
                 </input>
                 <textarea
-                    placeholder='Enter Description'
+                    placeholder='Write here...'
                     value={formData?.description}
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleTextAreaChange(e)}
                     className={styles.textarea}>
