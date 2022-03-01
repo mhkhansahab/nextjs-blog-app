@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './reducers/user.reducer';
+import blogsReducer from './reducers/blogs.reducer';
 import thunk from "redux-thunk";
 
 const store = configureStore({
     reducer: {
         userData: userReducer,
+        blogsData: blogsReducer
     },
     middleware : (getDefaultMiddleware)=>getDefaultMiddleware().concat(thunk)
 })

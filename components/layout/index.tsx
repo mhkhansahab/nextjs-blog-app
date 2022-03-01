@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Link from "next/link";
 import Navbar from "../navbar";
 import Footer from "../footer";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
@@ -23,6 +24,9 @@ const dispatch = useAppDispatch();
 
   return (
     <div className="layout-container">
+      <div className="title-name-container">
+        <Link href='/' ><div className="title-name">Scribe</div></Link>
+      </div>
       <Navbar />
       {children}
       <Footer />
@@ -30,8 +34,8 @@ const dispatch = useAppDispatch();
       {
         state?.userData?.user ?
           <>
-            <FloatingButton path='/blog.png' bottom={100} route='me'/>
-            <FloatingButton path='/logout.png' bottom={40} route='logout'/>
+            <FloatingButton path='/blog.png' bottom={100} route='me' text="My Blogs"/>
+            <FloatingButton path='/logout.png' bottom={40} route='logout' text="Logout"/>
           </> : null
       }
 

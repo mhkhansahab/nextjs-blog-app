@@ -10,12 +10,15 @@
     margin: 20px;
     cursor: default;
     color: #fcf7f9;
+    position: relative;
 
 }
-.container >div:not(:last-child){
+
+.title, .author, .img {
     padding: 5px 0;
 }
-.title{
+
+.title {
     font-size: 20px;
     font-weight: 700;
     width: 100%;
@@ -23,21 +26,23 @@
     white-space: nowrap;
     overflow: hidden;
 }
-.description{
+
+.description {
     font-size: 14px;
     font-weight: 600;
     width: 100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    
+
 }
-.author{
+
+.author {
     font-size: 14px;
     font-weight: 200;
 }
 
-.button{
+.button {
     border: 1px solid #fcf7f9;
     border-radius: 25px;
     font-size: 12px;
@@ -45,6 +50,18 @@
     cursor: pointer;
     align-self: flex-end;
 }
-.img{
+
+.img {
     align-self: center;
+}
+
+.imgContainer {
+    position: absolute;
+    bottom: 10px;
+    left:20px;
+}
+
+.imgContainer>span {
+    margin-right: 10px;
+    cursor: pointer;
 }

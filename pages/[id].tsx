@@ -30,15 +30,6 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 const Blog: NextPage = ({ blog }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <div className={styles.container}>
-            <div className={styles.imgContainer}>
-                <span>
-                    <Image src={'/edit.png'} height={32} width={32}></Image>
-                </span>
-                <span>
-                    <Image src={'/delete.png'} height={32} width={32}></Image>
-                </span>
-
-            </div>
             <div className={styles.title}>{blog?.title}</div>
             <div className={styles.author}>{blog?.author}</div>
             <div className={styles.description}>{blog?.description}</div>
