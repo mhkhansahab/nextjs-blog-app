@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.input, .textarea {
+    width: 60%;
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    resize: none;
+    background-color: #e1a1ae;
+    color: #fcf7f9;
+  }
+
+.textarea{
+    height: 30vh;
+}
+.textarea::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+.textarea::-webkit-scrollbar-thumb {
+    background: #e2e2e8;
+    border-radius: 10px;
+  }
+.textarea:focus-visible {
+    outline: none
+}
+
+.button{
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    width: fit-content;
+    margin:  0 auto;
+    margin-top: 20px;
+    color: #d38c9b;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* loader */
+
+.inkLoader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #e45c96;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media screen and (max-width: 712px) {
+ 
+.input, .textarea {
+  width: 90%;
+}
+}

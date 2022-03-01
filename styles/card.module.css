@@ -1,11 +1,12 @@
 .container {
     border-radius: 10px;
-    background-color: #e1a1ae;
+    background-color: #d38c9b;
     padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 280px;
+    min-width: 220px;
     margin: 20px;
     cursor: default;
     color: #fcf7f9;
