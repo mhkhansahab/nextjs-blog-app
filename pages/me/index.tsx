@@ -20,7 +20,7 @@ const MyBlogs: NextPage = () => {
     }
 
     function handleEdit(id: string) {
-        console.log('Handle Edit===>', id)
+        router.push(`/write?id=${id}`)
     }
 
     function handleDelete(id: string) {

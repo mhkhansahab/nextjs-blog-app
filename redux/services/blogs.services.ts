@@ -1,8 +1,6 @@
 import { BlogCredentials, BlogData } from "../../interfaces";
-import { addBlogs, deleteMyBlog } from "../actions/blogs.action";
+import { addBlogs, deleteMyBlog, updateMyBlog } from "../actions/blogs.action";
 import { AppDispatch } from "../store";
-import { useAppSelector } from "../app/hooks";
-import { title } from "process";
 
 export const getBlogs: Function = (blogCreds: BlogCredentials) => async (dispatch: AppDispatch) => {
     if (blogCreds?.id && blogCreds?.token) {
@@ -43,7 +41,6 @@ export const getBlogs: Function = (blogCreds: BlogCredentials) => async (dispatc
     }
 }
 
-
 export const deleteBlog: Function = (blogCreds: BlogCredentials) => async (dispatch: AppDispatch) => {
     if (blogCreds?.id && blogCreds?.token) {
         try {
@@ -62,7 +59,7 @@ export const deleteBlog: Function = (blogCreds: BlogCredentials) => async (dispa
                 const author: string = data?.data?.author;
                 const authorId: string = data?.data?.authorId;
                 const _id: string = data?.data?.id;
-                
+
                 const blog: BlogData = {
                     title,
                     description,
@@ -78,6 +75,99 @@ export const deleteBlog: Function = (blogCreds: BlogCredentials) => async (dispa
                 return {
                     ...data
                 }
+            }
+        } catch (e) {
+            console.log(e);
+            return {
+                success: false
+            }
+        }
+    }
+}
+
+export const updateBlog: Function = (blogData: any) => async (dispatch: AppDispatch) => {
+    if (blogData) {
+        try {
+            const apiData: any = {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: blogData?.token,
+                },
+                body: JSON.stringify({ ...blogData?.blog })
+            };
+
+            const response = await fetch('https://nestjs-blog-app.herokuapp.com/blogs/' + blogData?.id, apiData);
+            const data: any = await response.json();
+            if (data?.success) {
+                const title: string = data?.data?.title;
+                const description: string = data?.data?.description;
+                const author: string = data?.data?.author;
+                const authorId: string = data?.data?.authorId;
+                const _id: string = data?.data?.id;
+
+                const blog: BlogData = {
+                    title,
+                    description,
+                    author,
+                    authorId,
+                    _id
+                }
+                dispatch(updateMyBlog(blog))
+                return {
+                    ...data
+                }
+            } else {
+                return {
+                    ...data
+                }
+            }
+        } catch (e) {
+            console.log(e);
+            return {
+                success: false
+            }
+        }
+    }
+}
+
+export const getSingleBlog: Function = async (id: string) => {
+    if (id) {
+        try {
+            const apiData: any = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            const response = await fetch('https://nestjs-blog-app.herokuapp.com/blogs/' + id, apiData);
+            const data: any = await response.json();
+            return {
+                ...data
+            }
+        } catch (e) {
+            return {
+                success: false
+            }
+        }
+    }
+}
+
+export const addBlog: Function = async (blogData: any) => {
+    if (blogData) {
+        const apiData: any = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: blogData?.token,
+            },
+            body: JSON.stringify({ ...blogData?.blog })
+        }
+        try {
+            const response: any = await fetch('https://nestjs-blog-app.herokuapp.com/blogs', apiData);
+            const data: any = await response.json();
+            return {
+                ...data
             }
         } catch (e) {
             console.log(e);
