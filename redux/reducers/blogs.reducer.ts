@@ -29,9 +29,25 @@ export const blogReducer = createSlice({
         ...state,
         blogs: filteredBlogs
       }
+    },
+    updateBlogs: (state, action: PayloadAction<BlogData>) => {
+      const { payload } = action;
+      const updatedBlogs: any = state?.blogs?.map((blog) => {
+        if (blog?._id === payload?._id) {
+          return {
+            ...blog,
+            title: payload?.title,
+            description: payload?.description,
+          }
+        }
+      })
+      return {
+        ...state,
+        blogs: updatedBlogs
+      }
     }
   },
 })
 
-export const { setBlogs, deleteAndSetBlog } = blogReducer.actions;
+export const { setBlogs, deleteAndSetBlog, updateBlogs } = blogReducer.actions;
 export default blogReducer.reducer;
